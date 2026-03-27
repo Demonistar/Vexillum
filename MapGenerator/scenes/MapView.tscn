@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://b3mapview1a"]
+
+[ext_resource type="Script" path="res://scripts/MapRenderer.gd" id="1_maprenderer"]
+
+[node name="MapView" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1488, 496)
+zoom = Vector2(0.32, 0.32)
+enabled = true
+
+[node name="MapRenderer" type="Node2D" parent="."]
+script = ExtResource("1_maprenderer")

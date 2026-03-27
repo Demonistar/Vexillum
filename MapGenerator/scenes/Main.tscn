@@ -1,0 +1,97 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3main1a"]
+
+[ext_resource type="Script" path="res://scripts/Controls.gd" id="1_controls"]
+[ext_resource type="PackedScene" path="res://scenes/MapView.tscn" id="2_mapview"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_controls")
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="VBox" type="VBoxContainer" parent="UILayer"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 370.0
+offset_bottom = 720.0
+
+[node name="SeedRow" type="HBoxContainer" parent="UILayer/VBox"]
+
+[node name="SeedLabel" type="Label" parent="UILayer/VBox/SeedRow"]
+text = "Seed:"
+
+[node name="SeedInput" type="SpinBox" parent="UILayer/VBox/SeedRow"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.0
+max_value = 999999.0
+step = 1.0
+value = 12345.0
+
+[node name="GenerateBtn" type="Button" parent="UILayer/VBox/SeedRow"]
+text = "Generate"
+
+[node name="ButtonRow1" type="HBoxContainer" parent="UILayer/VBox"]
+
+[node name="AddNorthBtn" type="Button" parent="UILayer/VBox/ButtonRow1"]
+size_flags_horizontal = 3
+text = "Add North"
+
+[node name="AddSouthBtn" type="Button" parent="UILayer/VBox/ButtonRow1"]
+size_flags_horizontal = 3
+text = "Add South"
+
+[node name="AddEastBtn" type="Button" parent="UILayer/VBox/ButtonRow1"]
+size_flags_horizontal = 3
+text = "Add East"
+
+[node name="ButtonRow2" type="HBoxContainer" parent="UILayer/VBox"]
+
+[node name="RemoveLastBtn" type="Button" parent="UILayer/VBox/ButtonRow2"]
+size_flags_horizontal = 3
+text = "Remove Last"
+
+[node name="RegenCaveBtn" type="Button" parent="UILayer/VBox/ButtonRow2"]
+size_flags_horizontal = 3
+text = "Regen Cave"
+
+[node name="RegenVexBtn" type="Button" parent="UILayer/VBox/ButtonRow2"]
+size_flags_horizontal = 3
+text = "Regen VEX Base"
+
+[node name="ToggleRow" type="HBoxContainer" parent="UILayer/VBox"]
+
+[node name="OverlayCheck" type="CheckButton" parent="UILayer/VBox/ToggleRow"]
+toggle_mode = true
+text = "Overlay"
+
+[node name="WaypointsCheck" type="CheckButton" parent="UILayer/VBox/ToggleRow"]
+toggle_mode = true
+text = "Waypoints"
+
+[node name="ConnectionsCheck" type="CheckButton" parent="UILayer/VBox/ToggleRow"]
+toggle_mode = true
+text = "Connections"
+
+[node name="StatusLabel" type="Label" parent="UILayer/VBox"]
+text = "Initialising..."
+autowrap_mode = 3
+
+[node name="MapView" parent="." instance=ExtResource("2_mapview")]
+
+[connection signal="pressed" from="UILayer/VBox/SeedRow/GenerateBtn" to="." method="_on_generate_pressed"]
+[connection signal="pressed" from="UILayer/VBox/ButtonRow1/AddNorthBtn" to="." method="_on_add_north_pressed"]
+[connection signal="pressed" from="UILayer/VBox/ButtonRow1/AddSouthBtn" to="." method="_on_add_south_pressed"]
+[connection signal="pressed" from="UILayer/VBox/ButtonRow1/AddEastBtn" to="." method="_on_add_east_pressed"]
+[connection signal="pressed" from="UILayer/VBox/ButtonRow2/RemoveLastBtn" to="." method="_on_remove_last_pressed"]
+[connection signal="pressed" from="UILayer/VBox/ButtonRow2/RegenCaveBtn" to="." method="_on_regen_cave_pressed"]
+[connection signal="pressed" from="UILayer/VBox/ButtonRow2/RegenVexBtn" to="." method="_on_regen_vex_pressed"]
+[connection signal="toggled" from="UILayer/VBox/ToggleRow/OverlayCheck" to="." method="_on_overlay_toggled"]
+[connection signal="toggled" from="UILayer/VBox/ToggleRow/WaypointsCheck" to="." method="_on_waypoints_toggled"]
+[connection signal="toggled" from="UILayer/VBox/ToggleRow/ConnectionsCheck" to="." method="_on_connections_toggled"]
